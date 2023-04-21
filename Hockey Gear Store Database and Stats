@@ -1,0 +1,25 @@
+#Creates table hockeygear_store#
+CREATE TABLE hockeygear_store (id INTEGER PRIMARY KEY, item TEXT, brand TEXT, player_type TEXT, color TEXT, price INTEGER, stock INTEGER);
+
+#Adds items to table hockeygear_store#
+INSERT INTO hockeygear_store VALUES (1, "stick", "Bauer", "skater", "red", 100, 50);
+INSERT INTO hockeygear_store VALUES (2, "stick", "Bauer", "goalie", "white", 300, 10);
+INSERT INTO hockeygear_store VALUES (3, "helmet", "CCM", "skater", "black", 200, 23);
+INSERT INTO hockeygear_store VALUES (4, "helmet", "Warrior", "skater", "white", 210, 3);
+INSERT INTO hockeygear_store VALUES (5, "skates", "Bauer", "skater", "black and red", 315, 5);
+INSERT INTO hockeygear_store VALUES (6, "skates", "CCM", "goalie", "black", 350, 1);
+INSERT INTO hockeygear_store VALUES (7, "pads", "True", "goalie", "gold", 750, 2);
+INSERT INTO hockeygear_store VALUES (8, "pads", "Brians", "goalie", "white", 895, 5);
+INSERT INTO hockeygear_store VALUES (9, "blocker", "Brians", "goalie", "white", 400, 3);
+INSERT INTO hockeygear_store VALUES (10, "grip tape", "Monkey", "all", "black", 25, 50);
+INSERT INTO hockeygear_store VALUES (11, "sock tape", "Scotch", "skater", "clear", 14, 150);
+INSERT INTO hockeygear_store VALUES (12, "neck guard", "Custom", "goalie", "clear", 25, 5);
+INSERT INTO hockeygear_store VALUES (13, "helmet cage", "Warrior", "skater", "metal", 99, 14);
+INSERT INTO hockeygear_store VALUES (14, "chest protector", "True", "goalie", "black", 249, 2);
+INSERT INTO hockeygear_store VALUES (15, "mouth guard", "Nike", "all", "white", 12, 27);
+
+#Shows all items from hockeygear_store sorted by price lowest to highest#
+SELECT * FROM hockeygear_store ORDER BY price asc;
+
+#Shows how much total stock is in contained in the table hockeygear_store#
+SELECT SUM(stock) FROM hockeygear_store
