@@ -62,5 +62,5 @@ SELECT COUNT(*) AS Count,
  END as "Region" FROM bruins_players_scoring_202223
  GROUP BY "Region";
  
-/* Query players and points who scored 50 or more points and are 26 or younger */
-SELECT player_name, points FROM bruins_players_scoring_202223 WHERE points >= 50 AND age <=26;
+/* Query player, age, and points from those who scored 50 or more points and are 26 or younger */
+SELECT player_name, age, points FROM bruins_players_scoring_202223 WHERE points >= 50 AND age <=26;
