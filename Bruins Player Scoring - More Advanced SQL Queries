@@ -1,0 +1,66 @@
+/* Create table and create values */
+CREATE TABLE bruins_players_scoring_202223(
+   Player_Name       TEXT,
+   Birth_Year        INTEGER,
+   Birth_Country     TEXT,
+   Position          TEXT,
+   Height            TEXT,
+   Weight            INTEGER,
+   Age               INTEGER,
+   Reg_Season_GP     INTEGER,
+   Goals             INTEGER,
+   Assists           INTEGER,
+   Points            INTEGER
+);
+
+
+/* Insert values into table */
+INSERT into bruins_players_scoring_202223 VALUES ("Patrice Bergeron", 1985, "Canada", "Forward", "6-1", 196, 37, 78, 27, 31, 58);
+INSERT into bruins_players_scoring_202223 VALUES ("Tyler Bertuzzi", 1995, "Canada", "Forward", "6-1", 186, 27, 21, 4, 12, 16);
+INSERT into bruins_players_scoring_202223 VALUES ("Brandon Carlo", 1996, "USA", "Defense", "6-6", 218, 26, 75, 3, 13, 16);
+INSERT into bruins_players_scoring_202223 VALUES ("Connor Clifton", 1995, "USA", "Defense", "5-11", 190, 27, 78, 5, 18, 23);
+INSERT into bruins_players_scoring_202223 VALUES ("Charlie Coyle", 1992, "USA", "Forward", "6-3", 223, 30, 82, 16, 29, 45);
+INSERT into bruins_players_scoring_202223 VALUES ("Jake DeBrusk", 1996, "Canada", "Forward", "6-0", 197, 26, 64, 27, 23, 50);
+INSERT into bruins_players_scoring_202223 VALUES ("Nick Foligno", 1987, "USA", "Forward", "6-0", 210, 35, 60, 10, 16, 26);
+INSERT into bruins_players_scoring_202223 VALUES ("Derek Forbort", 1992, "USA", "Defense", "6-4", 208, 30, 54, 5, 7, 12);
+INSERT into bruins_players_scoring_202223 VALUES ("Trent Frederic", 1998, "USA", "Forward", "6-3", 214, 24, 79, 17, 14, 31);
+INSERT into bruins_players_scoring_202223 VALUES ("A.J. Greer", 1996, "Canada", "Forward", "6-3", 208, 26, 61, 5, 7, 12);
+INSERT into bruins_players_scoring_202223 VALUES ("Matt Grzelcyk", 1994, "USA", "Defense", "5-10", 176, 29, 75, 4, 22, 26);
+INSERT into bruins_players_scoring_202223 VALUES ("Taylor Hall", 1991, "Canada", "Forward", "6-1", 210, 31, 61, 16, 20, 36);
+INSERT into bruins_players_scoring_202223 VALUES ("Garnet Hathaway", 1991, "USA", "Forward", "6-3", 208, 31, 25, 4, 2, 6);
+INSERT into bruins_players_scoring_202223 VALUES ("David Krejci", 1986, "Czechia", "Forward", "6-0", 192, 36, 70, 16, 40, 56);
+INSERT into bruins_players_scoring_202223 VALUES ("Jakub Lauko", 2000, "Czechia", "Forward", "6-0", 196, 22, 23, 4, 3, 7);
+INSERT into bruins_players_scoring_202223 VALUES ("Hampus Lindholm", 1994, "Sweden", "Defense", "6-4", 215, 29, 80, 10, 43, 53);
+INSERT into bruins_players_scoring_202223 VALUES ("Brad Marchand", 1988, "Canada", "Forward", "5-9", 176, 34, 73, 21, 46, 67);
+INSERT into bruins_players_scoring_202223 VALUES ("Charlie McAvoy", 1997, "USA", "Defense", "6-1", 209, 25, 67, 7, 45, 52);
+INSERT into bruins_players_scoring_202223 VALUES ("Tomas Nosek", 1992, "Czechia", "Forward", "6-3", 205, 30, 66, 7, 11, 18);
+INSERT into bruins_players_scoring_202223 VALUES ("Dmitry Orlov", 1991, "Russia", "Defense", "5-11", 214, 31, 23, 4, 13, 17);
+INSERT into bruins_players_scoring_202223 VALUES ("David Pastrnak", 1996, "Czechia", "Forward", "6-1", 195, 26, 82, 61, 52, 113);
+INSERT into bruins_players_scoring_202223 VALUES ("Oskar Steen", 1998, "Sweden", "Forward", "5-9", 199, 24, 3, 1, 0, 1);
+INSERT into bruins_players_scoring_202223 VALUES ("Jeremy Swayman", 1998, "USA", "Goalie", "6-2", 194, 24, 37, 0, 0, 0);
+INSERT into bruins_players_scoring_202223 VALUES ("Linus Ullmark", 1993, "Sweden", "Goalie", "6-5", 212, 29, 49, 1, 0, 1);
+INSERT into bruins_players_scoring_202223 VALUES ("Pavel Zacha", 1997, "Czechia", "Forward", "6-4", 199, 25, 82, 21, 36, 57);
+INSERT into bruins_players_scoring_202223 VALUES ("Jakub Zboril", 1997, "Czechia", "Defense", "6-1", 201, 25, 22, 1, 3, 4);
+
+/* Query average points by position */
+SELECT position, AVG(points) AS average_points FROM bruins_players_scoring_202223 GROUP BY position;
+
+/* Query player with max points by position */
+SELECT player_name, MAX(points) AS max_points FROM bruins_players_scoring_202223 GROUP BY position;
+
+/* Query player with min points by position */
+SELECT player_name, MIN(points) AS min_points FROM bruins_players_scoring_202223 GROUP BY position;
+
+/* Query player points from forwards who weigh more than 200 lbs */
+SELECT player_name, points FROM bruins_players_scoring_202223 GROUP BY player_name HAVING weight > 200 AND position="Forward";
+
+/* Count how many players are North American or European */
+SELECT COUNT(*) AS Count,
+ CASE
+ WHEN Birth_Country="USA" OR Birth_Country="Canada" THEN "North American"
+ ELSE "European"
+ END as "Region" FROM bruins_players_scoring_202223
+ GROUP BY "Region";
+ 
+/* Query players and points who scored 50 or more points and are 26 or younger */
+SELECT player_name, points FROM bruins_players_scoring_202223 WHERE points >= 50 AND age <=26;
