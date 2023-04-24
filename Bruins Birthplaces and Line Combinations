@@ -1,0 +1,77 @@
+/* Create table about Bruins forwards names and ages */
+CREATE TABLE bruins_forwards (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fullname TEXT,
+    age INTEGER);
+
+/* Insert data into table bruins_forwards */    
+INSERT INTO bruins_forwards (fullname, age) VALUES ("Patrice Bereron", 37);
+INSERT INTO bruins_forwards (fullname, age) VALUES ("Tyler Bertuzzi", 27);
+INSERT INTO bruins_forwards (fullname, age) VALUES ("Chalie Coyle", 30);
+INSERT INTO bruins_forwards (fullname, age) VALUES ("Jake DeBrusk", 26);
+INSERT INTO bruins_forwards (fullname, age) VALUES ("Nick Foligno", 35);
+INSERT INTO bruins_forwards (fullname, age) VALUES ("Trent Frederic", 24);
+INSERT INTO bruins_forwards (fullname, age) VALUES ("A.J. Greer", 26);
+INSERT INTO bruins_forwards (fullname, age) VALUES ("Taylor Hall", 31);
+INSERT INTO bruins_forwards (fullname, age) VALUES ("Garnet Hathaway", 31);
+INSERT INTO bruins_forwards (fullname, age) VALUES ("David Krejci", 36);
+INSERT INTO bruins_forwards (fullname, age) VALUES ("Jakub Lauko", 22);
+INSERT INTO bruins_forwards (fullname, age) VALUES ("Brad Marchand", 34);
+INSERT INTO bruins_forwards (fullname, age) VALUES ("Tomas Nosek", 30);
+INSERT INTO bruins_forwards (fullname, age) VALUES ("David Pastrnak", 26);
+INSERT INTO bruins_forwards (fullname, age) VALUES ("Oskar Steen", 24);
+INSERT INTO bruins_forwards (fullname, age) VALUES ("Pavel Zacha", 25);
+
+/* Create table about Bruins forwards birth places*/
+CREATE TABLE birthplace (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    person_id INTEGER,
+    birth_place TEXT);
+
+/* Insert data into table birthplace */
+INSERT INTO birthplace (person_id, birth_place) VALUES (1, "Canada");
+INSERT INTO birthplace (person_id, birth_place) VALUES (2, "Canada");
+INSERT INTO birthplace (person_id, birth_place) VALUES (3, "USA");
+INSERT INTO birthplace (person_id, birth_place) VALUES (4, "Canada");
+INSERT INTO birthplace (person_id, birth_place) VALUES (5, "USA");
+INSERT INTO birthplace (person_id, birth_place) VALUES (6, "USA");
+INSERT INTO birthplace (person_id, birth_place) VALUES (7, "Canada");
+INSERT INTO birthplace (person_id, birth_place) VALUES (8, "Canada");
+INSERT INTO birthplace (person_id, birth_place) VALUES (9, "USA");
+INSERT INTO birthplace (person_id, birth_place) VALUES (10, "Czechia");
+INSERT INTO birthplace (person_id, birth_place) VALUES (11, "Czechia");
+INSERT INTO birthplace (person_id, birth_place) VALUES (12, "Canada");
+INSERT INTO birthplace (person_id, birth_place) VALUES (13, "Czechia");
+INSERT INTO birthplace (person_id, birth_place) VALUES (14, "Czechia");
+INSERT INTO birthplace (person_id, birth_place) VALUES (15, "Sweden");
+INSERT INTO birthplace (person_id, birth_place) VALUES (16, "Czechia");
+
+/* Create table about Bruins forwards line combinations*/    
+CREATE TABLE lines (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    linemate1_id INTEGER,
+    linemate2_id INTEGER,
+    linemate3_id INTEGER);
+    
+INSERT INTO lines (linemate1_id, linemate2_id, linemate3_id) VALUES (12, 1, 4);
+INSERT INTO lines (linemate1_id, linemate2_id, linemate3_id) VALUES (2, 16, 14);
+INSERT INTO lines (linemate1_id, linemate2_id, linemate3_id) VALUES (8, 3, 6);
+INSERT INTO lines (linemate1_id, linemate2_id, linemate3_id) VALUES (11, 13, 9);
+
+/* Use join to show names and birth places*/
+
+SELECT bf.fullname as "Name", bp.birth_place as "Birth Country"
+FROM bruins_forwards AS bf
+JOIN birthplace as bp
+ON bf.id=bp.person_id;
+
+/* Use self join to show lines*/
+
+SELECT lw.fullname as "Left Wing", c.fullname as "Center", rw.fullname as "Right Wing"
+FROM lines as l
+JOIN bruins_forwards lw
+ON l.linemate1_id=lw.id
+JOIN bruins_forwards c
+ON l.linemate2_id=c.id
+JOIN bruins_forwards rw
+ON l.linemate3_id=rw.id
